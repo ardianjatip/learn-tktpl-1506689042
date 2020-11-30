@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         intentFilter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
         registerReceiver(receiverWifi, intentFilter);
         getWifi();
-        volleyPost();
     }
 
     private void getWifi() {
@@ -106,31 +105,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void volleyPost(){
-        String postUrl = "https://29c21902b1aefad2d64e287a66df55d2.m.pipedream.net";
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-        JSONObject postData = new JSONObject();
-
-        try {
-            postData.put("name", "Jonathan");
-            postData.put("job", "Software Engineer");
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, postUrl, postData, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                System.out.println(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        requestQueue.add(jsonObjectRequest);
-    }
 }
