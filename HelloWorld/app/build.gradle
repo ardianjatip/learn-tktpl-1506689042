@@ -10,8 +10,12 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild{
+            cmake{
+                cppFlags ""
+            }
+        }
     }
 
     buildTypes {
@@ -20,6 +24,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    externalNativeBuild {
+        cmake {
+            version "3.10.2"
+            path file('src/main/cpp/CMakeLists.txt')
+        }
+    }
+    ndkVersion '22.0.6917172 rc1'
 }
 
 dependencies {
@@ -29,5 +41,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'com.android.volley:volley:1.1.1'
 
 }
